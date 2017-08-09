@@ -1,4 +1,4 @@
-package com.dmw.zgl.bowu;
+package com.dmw.zgl.bowu.base;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;

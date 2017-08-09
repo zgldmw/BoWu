@@ -1,8 +1,10 @@
-package com.dmw.zgl.bowu;
+package com.dmw.zgl.bowu.ui.sort;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.dmw.zgl.bowu.model.ArticleTypeCategoryData;
 
 import java.util.ArrayList;
 

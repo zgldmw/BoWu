@@ -1,4 +1,4 @@
-package com.dmw.zgl.bowu;
+package com.dmw.zgl.bowu.ui.home;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.dmw.zgl.bowu.R;
 import com.dmw.zgl.bowu.model.MoudleTitleData;
 
 /**

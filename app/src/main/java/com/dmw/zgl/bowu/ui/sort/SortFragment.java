@@ -1,4 +1,4 @@
-package com.dmw.zgl.bowu;
+package com.dmw.zgl.bowu.ui.sort;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,6 +7,10 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.dmw.zgl.bowu.api.ApiService;
+import com.dmw.zgl.bowu.base.HttpService;
+import com.dmw.zgl.bowu.R;
 
 import org.jsoup.nodes.Document;
 

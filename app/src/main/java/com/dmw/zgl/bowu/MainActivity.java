@@ -12,6 +12,10 @@ import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.dmw.zgl.bowu.ui.altas.AltasFragment;
+import com.dmw.zgl.bowu.ui.home.HomePageFragment;
+import com.dmw.zgl.bowu.ui.magzines.MagzinesFragment;
+import com.dmw.zgl.bowu.ui.sort.SortFragment;
 import com.facebook.drawee.backends.pipeline.Fresco;
 
 public class MainActivity extends FragmentActivity {

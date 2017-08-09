@@ -1,4 +1,4 @@
-package com.dmw.zgl.bowu;
+package com.dmw.zgl.bowu.ui.home;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.dmw.zgl.bowu.api.ApiService;
+import com.dmw.zgl.bowu.base.HttpService;
+import com.dmw.zgl.bowu.R;
 import com.dmw.zgl.bowu.model.ArticleCoverData;
 import com.dmw.zgl.bowu.model.HomePageIndexData;
 import com.dmw.zgl.bowu.model.ImageData;

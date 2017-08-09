@@ -1,4 +1,4 @@
-package com.dmw.zgl.bowu;
+package com.dmw.zgl.bowu.api;
 
 import org.jsoup.nodes.Document;
 

@@ -1,4 +1,4 @@
-package com.dmw.zgl.bowu;
+package com.dmw.zgl.bowu.base;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

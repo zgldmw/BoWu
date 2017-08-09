@@ -1,4 +1,4 @@
-package com.dmw.zgl.bowu;
+package com.dmw.zgl.bowu.ui.altas;
 
 import android.support.v4.app.Fragment;
 

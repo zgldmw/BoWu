@@ -1,4 +1,4 @@
-package com.dmw.zgl.bowu;
+package com.dmw.zgl.bowu.model;
 
 /**
  * Author:          zgl_dmw

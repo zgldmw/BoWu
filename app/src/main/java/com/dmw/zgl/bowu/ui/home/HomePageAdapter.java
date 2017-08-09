@@ -1,8 +1,10 @@
-package com.dmw.zgl.bowu;
+package com.dmw.zgl.bowu.ui.home;
 
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.dmw.zgl.bowu.base.RecyclerAdapter;
+import com.dmw.zgl.bowu.base.RecyclerViewHolder;
 import com.dmw.zgl.bowu.model.ArticleCoverData;
 import com.dmw.zgl.bowu.model.MagazineCoverData;
 import com.dmw.zgl.bowu.model.MoudleTitleData;
