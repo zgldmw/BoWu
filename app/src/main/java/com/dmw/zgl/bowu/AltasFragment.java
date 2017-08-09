@@ -11,4 +11,8 @@ import android.support.v4.app.Fragment;
  */
 
 public class AltasFragment extends Fragment {
+    public static AltasFragment getInstance() {
+        AltasFragment altasFragment = new AltasFragment();
+        return altasFragment;
+    }
 }

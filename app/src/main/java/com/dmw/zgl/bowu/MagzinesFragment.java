@@ -11,4 +11,8 @@ import android.support.v4.app.Fragment;
  */
 
 public class MagzinesFragment extends Fragment {
+    public static MagzinesFragment getInstance() {
+        MagzinesFragment magzinesFragment = new MagzinesFragment();
+        return magzinesFragment;
+    }
 }

@@ -41,6 +41,11 @@ public class HomePageFragment extends Fragment {
     private HomePageAdapter homePageAdapter;
     private HomePageBannerViewHolder homePageBannerViewHolder;
 
+    public static HomePageFragment getInstance() {
+        HomePageFragment homePageFragment = new HomePageFragment();
+        return homePageFragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -57,6 +62,7 @@ public class HomePageFragment extends Fragment {
         homePageBannerViewHolder = new HomePageBannerViewHolder(recyclerView);
         homePageAdapter.addHeaderView(homePageBannerViewHolder.getWholeView());
 
+        requestData();
     }
 
     private void requestData() {

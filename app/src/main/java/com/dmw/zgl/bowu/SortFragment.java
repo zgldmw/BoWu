@@ -11,4 +11,8 @@ import android.support.v4.app.Fragment;
  */
 
 public class SortFragment extends Fragment {
+    public static SortFragment getInstance() {
+        SortFragment sortFragment = new SortFragment();
+        return sortFragment;
+    }
 }
