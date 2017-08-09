@@ -3,6 +3,8 @@ package com.dmw.zgl.bowu.ui.sort;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.dmw.zgl.bowu.model.ArticleTypeCategoryData;
 
@@ -17,31 +19,27 @@ import java.util.ArrayList;
  */
 
 public class SortFragmentAdapter extends FragmentPagerAdapter {
-    private ArrayList<Fragment> fragments;
     private ArrayList<ArticleTypeCategoryData> categoryDatas;
 
     public SortFragmentAdapter(FragmentManager fm) {
         super(fm);
-        fragments = new ArrayList<>();
         categoryDatas = new ArrayList<>();
     }
 
-    public void addHomeDatas(ArrayList<Fragment> fragments) {
-        this.fragments.clear();
-        if (fragments != null) {
-            this.fragments.addAll(fragments);
-        }
+    public void setCategoryDatas(ArrayList<ArticleTypeCategoryData> categoryDatas) {
+        this.categoryDatas = categoryDatas;
         notifyDataSetChanged();
     }
 
     @Override
     public Fragment getItem(int position) {
-        return fragments.get(position);
+        // TODO: 2017/8/9 根据类型个数创建fragment
+        return ArticleListFragment.getInstance(categoryDatas.get(position).url);
     }
 
     @Override
     public int getCount() {
-        return fragments.size();
+        return categoryDatas.size();
     }
 
     @Override

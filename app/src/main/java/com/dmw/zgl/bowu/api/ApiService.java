@@ -15,7 +15,7 @@ import retrofit2.http.GET;
 
 public interface ApiService {
 
-    @GET("index/index.htm")
+    @GET("nh/index/index.htm")
     Observable<Document> getHomePageIndex();
 
     @GET("nh/tag/index.htm")

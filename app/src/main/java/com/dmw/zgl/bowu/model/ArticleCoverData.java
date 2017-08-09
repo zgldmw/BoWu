@@ -11,6 +11,7 @@ package com.dmw.zgl.bowu.model;
 public class ArticleCoverData {
     public ImageData cover;
     public String name;
+    public String desc;
     public String author;
     public String time;
     public transient boolean left;
