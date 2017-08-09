@@ -2,7 +2,7 @@ package com.dmw.zgl.bowu;
 
 import org.jsoup.nodes.Document;
 
-import retrofit2.Call;
+import io.reactivex.Observable;
 import retrofit2.http.GET;
 
 /**
@@ -16,5 +16,8 @@ import retrofit2.http.GET;
 public interface ApiService {
 
     @GET("index/index.htm")
-    Call<Document> getHomePageIndex();
+    Observable<Document> getHomePageIndex();
+
+    @GET("nh/tag/index.htm")
+    Observable<Document> getSortIndex();
 }

@@ -1,6 +1,7 @@
 package com.dmw.zgl.bowu;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +43,8 @@ public class ArticleCoverViewHolder {
     public void setData(ArticleCoverData articleCoverData) {
         int paddingLeft = articleCoverData.left ? mContext.getResources().getDimensionPixelOffset(R.dimen.px30) : mContext.getResources().getDimensionPixelOffset(R.dimen.px15);
         int paddingRight = articleCoverData.right ? mContext.getResources().getDimensionPixelOffset(R.dimen.px30) : mContext.getResources().getDimensionPixelOffset(R.dimen.px15);
-        mWholeView.setPadding(paddingLeft, 0, paddingRight, mContext.getResources().getDimensionPixelOffset(R.dimen.px30));
+        RecyclerView.LayoutParams layoutParams = (RecyclerView.LayoutParams) mWholeView.getLayoutParams();
+        layoutParams.setMargins(paddingLeft, 0, paddingRight, mContext.getResources().getDimensionPixelOffset(R.dimen.px30));
 
         cover.setImageURI(articleCoverData.cover.url);
         name.setText(articleCoverData.name);

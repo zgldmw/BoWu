@@ -12,6 +12,8 @@ import java.util.ArrayList;
 
 public class HomePageIndexData {
     public ImageData show_img;
+    public MoudleTitleData article_moudle_title;
     public ArrayList<ArticleCoverData> articles;
+    public MoudleTitleData magazines_moudle_title;
     public ArrayList<MagazineCoverData> magazines;
 }

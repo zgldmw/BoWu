@@ -2,4 +2,6 @@
 <resources>
     <dimen name="px30">15dp</dimen>
     <dimen name="px15">7.5dp</dimen>
+    <dimen name="px20">10dp</dimen>
+    <dimen name="px1">0.5dp</dimen>
 </resources>

@@ -5,6 +5,7 @@ import android.view.ViewGroup;
 
 import com.dmw.zgl.bowu.model.ArticleCoverData;
 import com.dmw.zgl.bowu.model.MagazineCoverData;
+import com.dmw.zgl.bowu.model.MoudleTitleData;
 
 /**
  * Author:          zgl_dmw
@@ -17,6 +18,7 @@ import com.dmw.zgl.bowu.model.MagazineCoverData;
 public class HomePageAdapter extends RecyclerAdapter {
     public static final int ARTICLE = 0;
     public static final int MAGZINES = 1;
+    public static final int TITLE = 2;
 
     @Override
     protected RecyclerViewHolder onCreateHolder(ViewGroup viewGroup, int viewType) {
@@ -25,10 +27,14 @@ public class HomePageAdapter extends RecyclerAdapter {
             ArticleCoverViewHolder articleCoverViewHolder = new ArticleCoverViewHolder(viewGroup);
             itemView = articleCoverViewHolder.getWholeView();
             itemView.setTag(articleCoverViewHolder);
-        } else {
+        } else if (viewType == MAGZINES){
             MagzinesCoverViewHolder magzinesCoverViewHolder = new MagzinesCoverViewHolder(viewGroup);
             itemView = magzinesCoverViewHolder.getWholeView();
             itemView.setTag(magzinesCoverViewHolder);
+        } else {
+            MoudleTitleViewHolder moudleTitleViewHolder = new MoudleTitleViewHolder(viewGroup);
+            itemView = moudleTitleViewHolder.getWholeView();
+            itemView.setTag(moudleTitleViewHolder);
         }
         return new RecyclerViewHolder(itemView);
     }
@@ -39,15 +45,18 @@ public class HomePageAdapter extends RecyclerAdapter {
         if (viewType == ARTICLE) {
             ArticleCoverViewHolder articleCoverViewHolder = (ArticleCoverViewHolder) viewHolder.getWholeView().getTag();
             articleCoverViewHolder.setData((ArticleCoverData) getData(position));
-        } else {
+        } else if (viewType == MAGZINES) {
             MagzinesCoverViewHolder magzinesCoverViewHolder = (MagzinesCoverViewHolder) viewHolder.getWholeView().getTag();
             magzinesCoverViewHolder.setData((MagazineCoverData) getData(position));
+        } else {
+            MoudleTitleViewHolder moudleTitleViewHolder = (MoudleTitleViewHolder) viewHolder.getWholeView().getTag();
+            moudleTitleViewHolder.setData((MoudleTitleData) getData(position));
         }
     }
 
     @Override
     protected boolean isFullSpan(int position) {
-        return false;
+        return getItemViewType(position) == MAGZINES || getItemViewType(position) == TITLE;
     }
 
     @Override
@@ -57,7 +66,8 @@ public class HomePageAdapter extends RecyclerAdapter {
             return ARTICLE;
         } else if (o instanceof MagazineCoverData) {
             return MAGZINES;
+        } else {
+            return TITLE;
         }
-        return 0;
     }
 }

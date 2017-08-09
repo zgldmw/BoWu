@@ -27,8 +27,8 @@ public class MagzinesCoverViewHolder {
     private TextView order;
 
     public MagzinesCoverViewHolder(ViewGroup parent) {
-        Context context = parent.getContext();
-        mWholeView = LayoutInflater.from(context).inflate(R.layout.item_magzines_cover, parent, false);
+        mContext = parent.getContext();
+        mWholeView = LayoutInflater.from(mContext).inflate(R.layout.item_magzines_cover, parent, false);
         cover = mWholeView.findViewById(R.id.cover);
         name = mWholeView.findViewById(R.id.name);
         time = mWholeView.findViewById(R.id.time);
@@ -40,10 +40,6 @@ public class MagzinesCoverViewHolder {
     }
 
     public void setData(MagazineCoverData magazineCoverData) {
-        int paddingLeft = magazineCoverData.left ? mContext.getResources().getDimensionPixelOffset(R.dimen.px30) : mContext.getResources().getDimensionPixelOffset(R.dimen.px15);
-        int paddingRight = magazineCoverData.right ? mContext.getResources().getDimensionPixelOffset(R.dimen.px30) : mContext.getResources().getDimensionPixelOffset(R.dimen.px15);
-        mWholeView.setPadding(paddingLeft, 0, paddingRight, mContext.getResources().getDimensionPixelOffset(R.dimen.px30));
-
         cover.setImageURI(magazineCoverData.cover.url);
         name.setText(magazineCoverData.name);
         time.setText(magazineCoverData.time);

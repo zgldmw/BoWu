@@ -1,53 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#e5e5e5"
+    android:layout_marginLeft="@dimen/px30"
+    android:layout_marginRight="@dimen/px30"
+    android:layout_marginBottom="@dimen/px30"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal">
-    
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/cover"
-        android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        fresco:viewAspectRatio="0.72" />
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/white"
-        android:paddingLeft="10dp"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/name"
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/cover"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:textStyle="bold"
-            tools:text="嗑，嗑，嗑瓜子"
-            android:textColor="#333333"
-            android:textSize="16sp"/>
+            android:layout_height="200dp"
+            fresco:viewAspectRatio="0.72" />
 
-        <TextView
-            android:id="@+id/time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
-            tools:text="2017年 第02期"
-            android:textColor="#999999"
-            android:textSize="12sp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="30dp"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/order"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            tools:text="总第158期"
-            android:textColor="#999999"
-            android:textSize="12sp"/>
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:textStyle="bold"
+                tools:text="嗑，嗑，嗑瓜子"
+                android:textColor="@color/color3"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                tools:text="2017年 第02期"
+                android:textColor="@color/color6"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                tools:text="总第158期"
+                android:textColor="@color/color6"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
 
     </LinearLayout>
-
-</LinearLayout>
+    
+</android.support.v7.widget.CardView>
