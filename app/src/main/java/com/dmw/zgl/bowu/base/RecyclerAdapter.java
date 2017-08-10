@@ -122,7 +122,7 @@ public abstract class RecyclerAdapter extends RecyclerView.Adapter<RecyclerViewH
         return onCreateHolder(viewGroup, viewType);
     }
 
-    protected abstract RecyclerViewHolder onCreateHolder(ViewGroup viewGroup, int viewType);
+    protected abstract RecyclerViewHolder onCreateHolder(ViewGroup parent, int viewType);
 
     @Override
     public void onBindViewHolder(RecyclerViewHolder viewHolder, int position) {

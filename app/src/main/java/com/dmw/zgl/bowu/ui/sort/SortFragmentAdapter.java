@@ -24,6 +24,12 @@ public class SortFragmentAdapter extends FragmentPagerAdapter {
     public SortFragmentAdapter(FragmentManager fm) {
         super(fm);
         categoryDatas = new ArrayList<>();
+//        ArticleTypeCategoryData typeCategoryData = new ArticleTypeCategoryData();
+//        typeCategoryData.type = "aaa";
+//        typeCategoryData.url = "aaa";
+//        categoryDatas.add(typeCategoryData);
+//        categoryDatas.add(typeCategoryData);
+//        categoryDatas.add(typeCategoryData);
     }
 
     public void setCategoryDatas(ArrayList<ArticleTypeCategoryData> categoryDatas) {

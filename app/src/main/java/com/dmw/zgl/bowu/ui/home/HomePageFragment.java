@@ -1,20 +1,16 @@
 package com.dmw.zgl.bowu.ui.home;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.dmw.zgl.bowu.api.ApiService;
-import com.dmw.zgl.bowu.base.HttpService;
 import com.dmw.zgl.bowu.R;
+import com.dmw.zgl.bowu.api.ApiService;
+import com.dmw.zgl.bowu.base.BaseFragment;
+import com.dmw.zgl.bowu.base.HttpService;
 import com.dmw.zgl.bowu.model.ArticleCoverData;
 import com.dmw.zgl.bowu.model.HomePageIndexData;
 import com.dmw.zgl.bowu.model.ImageData;
@@ -42,37 +38,40 @@ import io.reactivex.schedulers.Schedulers;
  * Description:     HomePageFragment
  */
 
-public class HomePageFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class HomePageFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
     private RecyclerView recyclerView;
     private SwipeRefreshLayout mRefreshLayout;
     private HomePageAdapter homePageAdapter;
     private HomePageBannerViewHolder homePageBannerViewHolder;
-    private View mContentView;
 
     public static HomePageFragment getInstance() {
         HomePageFragment homePageFragment = new HomePageFragment();
         return homePageFragment;
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if (mContentView == null) {
-            mContentView = inflater.inflate(R.layout.fragment_homepage, container, false);
-            mRefreshLayout = mContentView.findViewById(R.id.refreshlayout);
-            mRefreshLayout.setOnRefreshListener(this);
-            recyclerView = mContentView.findViewById(R.id.recyclerview);
-            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
-            recyclerView.setLayoutManager(gridLayoutManager);
-            homePageAdapter = new HomePageAdapter();
-            recyclerView.setAdapter(homePageAdapter);
-            homePageBannerViewHolder = new HomePageBannerViewHolder(recyclerView);
-            homePageAdapter.addHeaderView(homePageBannerViewHolder.getWholeView());
+    protected int setContentView() {
+        return R.layout.fragment_homepage;
+    }
 
-            recyclerView.setVisibility(View.GONE);
-            requestData();
-        }
-        return mContentView;
+    @Override
+    protected void initView(View contentView) {
+        mRefreshLayout = contentView.findViewById(R.id.refreshlayout);
+        mRefreshLayout.setOnRefreshListener(this);
+        recyclerView = contentView.findViewById(R.id.recyclerview);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        homePageAdapter = new HomePageAdapter();
+        recyclerView.setAdapter(homePageAdapter);
+        homePageBannerViewHolder = new HomePageBannerViewHolder(recyclerView);
+        homePageAdapter.addHeaderView(homePageBannerViewHolder.getWholeView());
+
+        recyclerView.setVisibility(View.GONE);
+    }
+
+    @Override
+    protected void setData() {
+        requestData();
     }
 
     private void requestData() {

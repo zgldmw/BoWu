@@ -1,16 +1,13 @@
 package com.dmw.zgl.bowu.ui.sort;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.dmw.zgl.bowu.R;
 import com.dmw.zgl.bowu.api.ApiService;
+import com.dmw.zgl.bowu.base.BaseFragment;
 import com.dmw.zgl.bowu.base.HttpService;
 import com.dmw.zgl.bowu.model.ArticleTypeCategoryData;
 
@@ -33,31 +30,37 @@ import io.reactivex.schedulers.Schedulers;
  * Description:     SortFragment
  */
 
-public class SortFragment extends Fragment {
+public class SortFragment extends BaseFragment {
     private SortFragmentAdapter sortFragmentAdapter;
+
     public static SortFragment getInstance() {
         SortFragment sortFragment = new SortFragment();
         return sortFragment;
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_sort, container, false);
+    protected int setContentView() {
+        return R.layout.fragment_sort;
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        ViewPager viewPager = view.findViewById(R.id.viewpager);
+    protected void initView(View contentView) {
+        ViewPager viewPager = contentView.findViewById(R.id.viewpager);
         sortFragmentAdapter = new SortFragmentAdapter(getChildFragmentManager());
         viewPager.setAdapter(sortFragmentAdapter);
 
+        TabLayout tabLayout = contentView.findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
+    }
+
+    @Override
+    protected void setData() {
         requestTypeData();
     }
 
     private void requestTypeData() {
         ApiService apiService = HttpService.getInstance().create(ApiService.class);
-        apiService.getSortIndex().subscribeOn(Schedulers.io())
+        apiService.getSortType().subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<Document>() {

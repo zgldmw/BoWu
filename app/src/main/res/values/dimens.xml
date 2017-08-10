@@ -4,4 +4,6 @@
     <dimen name="px15">7.5dp</dimen>
     <dimen name="px20">10dp</dimen>
     <dimen name="px1">0.5dp</dimen>
+    <dimen name="px10">5dp</dimen>
+    <dimen name="sp16">16sp</dimen>
 </resources>

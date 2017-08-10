@@ -12,6 +12,7 @@ public class ArticleCoverData {
     public ImageData cover;
     public String name;
     public String desc;
+    public boolean is_free;
     public String author;
     public String time;
     public transient boolean left;

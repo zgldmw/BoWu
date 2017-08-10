@@ -4,6 +4,7 @@ import org.jsoup.nodes.Document;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.Url;
 
 /**
  * Author:          zgl_dmw
@@ -19,5 +20,8 @@ public interface ApiService {
     Observable<Document> getHomePageIndex();
 
     @GET("nh/tag/index.htm")
-    Observable<Document> getSortIndex();
+    Observable<Document> getSortType();
+
+    @GET
+    Observable<Document> getArticleList(@Url String url);
 }
