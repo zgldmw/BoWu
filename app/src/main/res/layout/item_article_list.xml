@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:paddingBottom="20dp"
+    android:paddingTop="20dp">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/cover"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:layout_marginLeft="@dimen/px30"
+        android:layout_marginStart="@dimen/px30"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:placeholderImage="@color/colore5"
+        app:viewAspectRatio="1.5" />
+
+    <com.dmw.zgl.bowu.base.FreeTagView
+        android:id="@+id/free_tag"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:layout_constraintLeft_toLeftOf="@id/cover"
+        app:layout_constraintTop_toTopOf="@id/cover" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/px30"
+        android:layout_marginStart="@dimen/px30"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/color3"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@+id/cover"
+        app:layout_constraintTop_toTopOf="@+id/cover"
+        tools:text="2017 我的四季 " />
+
+    <android.support.v4.widget.Space
+        android:id="@+id/space"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/px30"
+        app:layout_constraintLeft_toRightOf="@+id/cover"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/px30"
+        android:layout_marginLeft="@dimen/px30"
+        android:layout_marginRight="@dimen/px30"
+        android:layout_marginStart="@dimen/px30"
+        android:ellipsize="end"
+        android:maxLines="4"
+        android:textColor="@color/color3"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toRightOf="@+id/cover"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/space"
+        app:layout_goneMarginTop="@dimen/px30"
+        tools:text=" 2017年自然摄影的交流主题是—我的四季！爱自然的人，总会在不经意间觉察到光阴流转的细微变化，请用照片表达出你眼中的四季吧，壮丽的风景或是一片饱经沧桑的树叶，广阔的大……" />
+
+    <TextView
+        android:id="@+id/author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/px30"
+        android:layout_marginStart="@dimen/px30"
+        android:layout_marginTop="@dimen/px10"
+        android:textColor="@color/color3"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toRightOf="@+id/cover"
+        app:layout_constraintTop_toBottomOf="@+id/desc"
+        app:layout_goneMarginLeft="@dimen/px30"
+        tools:text="作者：叶哲涵" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/px30"
+        android:layout_marginStart="@dimen/px30"
+        android:layout_marginTop="@dimen/px10"
+        android:textColor="@color/color3"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toRightOf="@+id/author"
+        app:layout_constraintTop_toBottomOf="@+id/desc"
+        tools:text="2017年第07期" />
+
+</android.support.constraint.ConstraintLayout>
