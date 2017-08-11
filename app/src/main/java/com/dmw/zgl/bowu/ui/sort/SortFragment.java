@@ -67,19 +67,17 @@ public class SortFragment extends BaseFragment {
 
                     @Override
                     public void onNext(@NonNull Document document) {
-                        if (document != null) {
-                            ArrayList<ArticleTypeCategoryData> typeCategoryDatas = new ArrayList<>();
-                            Elements types = document.select("body > div.wpr").first().select("a");
-                            for (Element element : types) {
-                                ArticleTypeCategoryData typeCategoryData = new ArticleTypeCategoryData();
-                                typeCategoryData.type = element.text();
-                                typeCategoryData.url = element.attr("href");
-                                typeCategoryDatas.add(typeCategoryData);
-                            }
-                            sortFragmentAdapter.setCategoryDatas(typeCategoryDatas);
-
-                            Log.d("SortFragment", types.html());
+                        ArrayList<ArticleTypeCategoryData> typeCategoryDatas = new ArrayList<>();
+                        Elements types = document.select("body > div.wpr").first().select("a");
+                        for (Element element : types) {
+                            ArticleTypeCategoryData typeCategoryData = new ArticleTypeCategoryData();
+                            typeCategoryData.type = element.text();
+                            typeCategoryData.url = element.attr("href");
+                            typeCategoryDatas.add(typeCategoryData);
                         }
+                        sortFragmentAdapter.setCategoryDatas(typeCategoryDatas);
+
+                        Log.d("SortFragment", types.html());
                     }
 
                     @Override

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/cover"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/line"
+        app:placeholderImage="@color/colore5"
+        app:viewAspectRatio="0.75" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.58"
+        android:orientation="vertical"/>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/line"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/px80"
+        android:layout_marginLeft="@dimen/px20"
+        tools:text="青蛙与蟾蜍"
+        android:textColor="@color/color3"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/order"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/line"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        android:layout_marginTop="@dimen/px40"
+        android:layout_marginLeft="@dimen/px20"
+        tools:text="第05期"
+        android:textColor="@color/color9"
+        android:textSize="16sp" />
+
+</android.support.constraint.ConstraintLayout>

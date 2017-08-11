@@ -4,6 +4,7 @@ import org.jsoup.nodes.Document;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Url;
 
 /**
@@ -24,4 +25,7 @@ public interface ApiService {
 
     @GET
     Observable<Document> getArticleList(@Url String url);
+
+    @GET("nh/pic/{year}.htm")
+    Observable<Document> getAltaList(@Path("year") int year);
 }
