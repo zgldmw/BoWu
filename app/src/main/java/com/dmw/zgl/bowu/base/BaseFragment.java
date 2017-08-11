@@ -19,6 +19,8 @@ import android.view.ViewGroup;
 
 public abstract class BaseFragment extends Fragment {
     private View mContentView;
+    private boolean mIsVisibleToUser;
+    private boolean mIsFirst;
 
     @Override
     public void onAttach(Context context) {
@@ -38,10 +40,18 @@ public abstract class BaseFragment extends Fragment {
         if (mContentView == null) {
             mContentView = inflater.inflate(setContentView(), container, false);
             initView(mContentView);
-            setData();
+            mIsFirst = true;
         }
+        lazyLoad();
         Log.d(getClass().getSimpleName(), "onCreateView");
         return mContentView;
+    }
+
+    private void lazyLoad() {
+        if (mIsFirst && mIsVisibleToUser) {
+            mIsFirst = false;
+            setData();
+        }
     }
 
     @Override
@@ -71,6 +81,8 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
+        mIsVisibleToUser = getParentFragment() == null ? isVisibleToUser : getParentFragment().getUserVisibleHint() && isVisibleToUser;
+        lazyLoad();
         Log.d(getClass().getSimpleName(), "isVisibleToUser：" + isVisibleToUser);
     }
 

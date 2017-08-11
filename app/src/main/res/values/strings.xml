@@ -3,4 +3,6 @@
     <string name="author">作者：%1$s</string>
     <string name="time">出自：%1$s</string>
     <string name="free_tag">免费</string>
+    <string name="load_more">正在加载更多......</string>
+    <string name="no_more_data">已无更多数据</string>
 </resources>

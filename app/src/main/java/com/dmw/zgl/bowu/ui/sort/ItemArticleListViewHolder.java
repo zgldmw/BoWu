@@ -1,6 +1,7 @@
 package com.dmw.zgl.bowu.ui.sort;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,8 +51,11 @@ public class ItemArticleListViewHolder {
         freeTagView.setVisibility(articleCoverData.is_free ? View.VISIBLE : View.GONE);
         name.setText(articleCoverData.name);
         desc.setText(articleCoverData.desc);
+        desc.setVisibility(TextUtils.isEmpty(articleCoverData.desc) ? View.GONE : View.VISIBLE);
         author.setText(mContext.getResources().getString(R.string.author, articleCoverData.author));
+        author.setVisibility(TextUtils.isEmpty(articleCoverData.author) ? View.GONE : View.VISIBLE);
         time.setText(mContext.getResources().getString(R.string.time, articleCoverData.time));
+        time.setVisibility(TextUtils.isEmpty(articleCoverData.time) ? View.GONE : View.VISIBLE);
     }
 }
 

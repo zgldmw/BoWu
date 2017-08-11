@@ -6,4 +6,6 @@
     <dimen name="px1">0.5dp</dimen>
     <dimen name="px10">5dp</dimen>
     <dimen name="sp16">16sp</dimen>
+    <dimen name="px4">2dp</dimen>
+    <dimen name="px40">20dp</dimen>
 </resources>
