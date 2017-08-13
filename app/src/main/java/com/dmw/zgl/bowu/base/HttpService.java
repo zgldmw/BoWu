@@ -1,6 +1,10 @@
 package com.dmw.zgl.bowu.base;
 
+import android.content.Context;
 import android.util.Log;
+
+import com.facebook.imagepipeline.backends.okhttp3.OkHttpImagePipelineConfigFactory;
+import com.facebook.imagepipeline.core.ImagePipelineConfig;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,44 +22,65 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
  */
 
 public class HttpService {
-    private volatile static Retrofit INSTANCE; //构造方法私有
+    private volatile static Retrofit RETROFITINSTANCE; //构造方法私有
+    private volatile static OkHttpClient OKHTTPINSTANCE;
+    private volatile static ImagePipelineConfig PIPELINEINSTANCE;
 
     public static Retrofit getInstance() {
-        if (INSTANCE == null) {
+        if (RETROFITINSTANCE == null) {
             synchronized (HttpService.class) {
-                if (INSTANCE == null) {
-                    INSTANCE = initRetrofit();
+                if (RETROFITINSTANCE == null) {
+                    RETROFITINSTANCE = new Retrofit.Builder()
+                            .addConverterFactory(HtmlConverterFactory.create())
+                            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                            .baseUrl("http://www.dili360.com/")
+                            .client(initOkHttpClient())
+                            .build();
                 }
             }
         }
-        return INSTANCE;
+        return RETROFITINSTANCE;
     }
 
-    private static Retrofit initRetrofit() {
-        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
-            @Override
-            public void log(String message) {
-                Log.e("OkHttp-----------------", message);
+    private static OkHttpClient initOkHttpClient() {
+        if (OKHTTPINSTANCE == null) {
+            synchronized (HttpService.class) {
+                if (OKHTTPINSTANCE == null) {
+                    HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+                        @Override
+                        public void log(String message) {
+                            Log.e("OkHttp-----------------", message);
+                        }
+                    });
+                    loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+                    OKHTTPINSTANCE = new OkHttpClient();
+                    OKHTTPINSTANCE.newBuilder()
+                            .addInterceptor(loggingInterceptor)
+                            .retryOnConnectionFailure(true)
+                            .connectTimeout(10, TimeUnit.SECONDS)
+                            .readTimeout(10, TimeUnit.SECONDS)
+                            .writeTimeout(10, TimeUnit.SECONDS)
+                            .build();
+                }
             }
-        });
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        }
 
-        OkHttpClient okHttpClient = new OkHttpClient();
-        okHttpClient.newBuilder()
-                .addInterceptor(loggingInterceptor)
-                .retryOnConnectionFailure(true)
-                .connectTimeout(10, TimeUnit.SECONDS)
-                .readTimeout(10, TimeUnit.SECONDS)
-                .writeTimeout(10, TimeUnit.SECONDS)
-                .build();
+        return OKHTTPINSTANCE;
+    }
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .addConverterFactory(HtmlConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .baseUrl("http://www.dili360.com/")
-                .client(okHttpClient)
-                .build();
+    public static ImagePipelineConfig initPipeline(Context context) {
+        if (PIPELINEINSTANCE == null) {
+            synchronized (HttpService.class) {
+                if (PIPELINEINSTANCE == null) {
+                    PIPELINEINSTANCE = OkHttpImagePipelineConfigFactory
+                            .newBuilder(context, initOkHttpClient())
+                            .setDownsampleEnabled(true)
+                            .build();
+                }
+            }
+        }
 
-        return retrofit;
+        return PIPELINEINSTANCE;
     }
 }

@@ -13,6 +13,7 @@ public class MagazineCoverData {
     public String name;
     public String time;
     public String order;
+    public String link_url;
     public transient boolean left;
     public transient boolean right;
 }

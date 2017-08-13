@@ -5,7 +5,6 @@ import android.view.ViewGroup;
 
 import com.dmw.zgl.bowu.base.RecyclerAdapter;
 import com.dmw.zgl.bowu.base.RecyclerViewHolder;
-import com.dmw.zgl.bowu.model.AltasYearData;
 import com.dmw.zgl.bowu.model.ImageData;
 import com.dmw.zgl.bowu.model.MagazineCoverData;
 
@@ -28,18 +27,21 @@ public class AltasAdapter extends RecyclerAdapter {
         if (viewType == TITLE) {
             AltasYeartitleViewHolder altasYeartitleViewHolder = new AltasYeartitleViewHolder(parent);
             itemView = altasYeartitleViewHolder.getWholeView();
+            itemView.setTag(altasYeartitleViewHolder);
         } else if (viewType == COVER) {
             AltasMagzinesCoverViewHolder altasMagzinesCoverViewHolder = new AltasMagzinesCoverViewHolder(parent);
             itemView = altasMagzinesCoverViewHolder.getWholeView();
+            itemView.setTag(altasMagzinesCoverViewHolder);
         } else if (viewType == ALTA) {
             AltaItemViewholder altaItemViewholder = new AltaItemViewholder(parent);
             itemView = altaItemViewholder.getWholeView();
+            itemView.setTag(altaItemViewholder);
         } else {
             AltaDividerViewHolder altaDividerViewHolder = new AltaDividerViewHolder(parent);
             itemView = altaDividerViewHolder.getWholeView();
+            itemView.setTag(altaDividerViewHolder);
         }
 
-        itemView.setTag(itemView);
         return new RecyclerViewHolder(itemView);
     }
 
@@ -68,7 +70,7 @@ public class AltasAdapter extends RecyclerAdapter {
     protected int getItemType(int position) {
         int viewType;
         Object o = getData(position);
-        if (o instanceof AltasYearData) {
+        if (o instanceof String) {
             viewType = TITLE;
         } else if (o instanceof MagazineCoverData) {
             viewType = COVER;

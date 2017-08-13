@@ -1,6 +1,8 @@
 package com.dmw.zgl.bowu.ui.altas;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +39,13 @@ public class AltaItemViewholder {
 
     public void setData(ImageData imageData) {
         img.setImageURI(imageData.url);
-        hover.setText(imageData.desc);
+        hover.setText(imageData.name);
+        if (TextUtils.isEmpty(imageData.url)) {
+            hover.setBackgroundResource(0);
+            hover.setVisibility(View.VISIBLE);
+        } else {
+            hover.setBackgroundResource(R.color.black_alpha);
+            hover.setVisibility(View.GONE);
+        }
     }
 }

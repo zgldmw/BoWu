@@ -9,9 +9,15 @@ import com.dmw.zgl.bowu.R;
 import com.dmw.zgl.bowu.api.ApiService;
 import com.dmw.zgl.bowu.base.BaseFragment;
 import com.dmw.zgl.bowu.base.HttpService;
+import com.dmw.zgl.bowu.model.AltasYearData;
+import com.dmw.zgl.bowu.model.ImageData;
+import com.dmw.zgl.bowu.model.MagazineCoverData;
 
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -28,6 +34,9 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 public class AltasFragment extends BaseFragment {
+    private int currentPage;
+    private AltasAdapter altasAdapter;
+
     public static AltasFragment getInstance() {
         AltasFragment altasFragment = new AltasFragment();
         return altasFragment;
@@ -43,21 +52,63 @@ public class AltasFragment extends BaseFragment {
         RecyclerView recyclerView = contentView.findViewById(R.id.recyclerview);
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView.setLayoutManager(layoutManager);
-        AltasAdapter altasAdapter = new AltasAdapter();
+        altasAdapter = new AltasAdapter();
         recyclerView.setAdapter(altasAdapter);
     }
 
     @Override
     protected void setData() {
-        int year = Calendar.getInstance().get(Calendar.YEAR);
+        currentPage = Calendar.getInstance().get(Calendar.YEAR);
         ApiService apiService = HttpService.getInstance().create(ApiService.class);
-        apiService.getAltaList(year).subscribeOn(Schedulers.io())
+        apiService.getAltaList(currentPage).subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<Document>() {
 
                     @Override
                     public void onNext(@NonNull Document document) {
+                        Element content = document.select("div.wpr").get(3).select("div.content").first();
+                        ArrayList<Object> objects = new ArrayList<>();
+                        Elements photoList = content.select("ul.photo-list");
+                        AltasYearData altasYearData = new AltasYearData();
+                        altasYearData.year = currentPage + "";
+                        objects.add(altasYearData.year);
+                        for (Element element : photoList) {
+                            ArrayList<ImageData> imageDatas= new ArrayList<>();
+                            Elements imgs = element.select("li");
+                            for (Element imgData : imgs) {
+                                if (imgData.hasClass("header")) {
+                                    MagazineCoverData magazineCoverData = new MagazineCoverData();
+                                    ImageData image = new ImageData();
+                                    Element img = imgData.select("div.img").first().select("img").first();
+                                    image.url = img.attr("src");
+                                    magazineCoverData.cover = image;
+                                    Element detail = imgData.select("div.detail").first();
+                                    magazineCoverData.link_url = detail.select("a").first().attr("href");
+                                    magazineCoverData.name = detail.select("h1").first().text();
+                                    magazineCoverData.order = detail.select("span.tips").first().text();
+                                    altasYearData.magazineCover = magazineCoverData;
+                                    objects.add(altasYearData.magazineCover);
+                                } else if (imgData.hasClass("more")) {
+                                    ImageData imageData = new ImageData();
+                                    Element more = imgData.select("span > a").first();
+                                    imageData.name = more.text();
+                                    imageData.desc = more.attr("href");
+                                    imageDatas.add(imageData);
+                                } else {
+                                    ImageData imageData = new ImageData();
+                                    imageData.url = imgData.select("img").first().attr("src");
+                                    imageData.name = imgData.select("div.mask").first().text();
+                                    imageDatas.add(imageData);
+                                }
+                            }
+                            altasYearData.images = imageDatas;
+                            objects.addAll(altasYearData.images);
+                            Object o = new Object();
+                            objects.add(o);
+                        }
+
+                        altasAdapter.addHomePage(objects);
                         Log.d("AltasFragment", document.html());
                     }
 

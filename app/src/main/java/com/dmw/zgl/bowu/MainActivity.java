@@ -5,7 +5,9 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 
+import com.dmw.zgl.bowu.base.HttpService;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.imagepipeline.core.ImagePipelineConfig;
 
 public class MainActivity extends FragmentActivity {
     @Override
@@ -13,7 +15,8 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Fresco.initialize(this);
+        ImagePipelineConfig imagePipelineConfig = HttpService.initPipeline(this);
+        Fresco.initialize(this, imagePipelineConfig);
 
         initView();
     }

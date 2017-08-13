@@ -2,6 +2,7 @@ package com.dmw.zgl.bowu.base;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -116,6 +117,7 @@ public abstract class BaseFragment extends Fragment {
         Log.d(getClass().getSimpleName(), "onDetach");
     }
 
+    @LayoutRes
     protected abstract int setContentView();
 
     protected abstract void initView(View contentView);
