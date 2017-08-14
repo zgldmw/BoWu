@@ -32,11 +32,11 @@ public class LoadMoreItemView {
     public void setupWithRecyclerView(RecyclerView recyclerView) {
         mRecyclerView = recyclerView;
         mLoadMoreView = LayoutInflater.from(recyclerView.getContext()).inflate(R.layout.layout_load_more, recyclerView, false);
+        initLoadMoreView();
     }
 
     public void setLoadMoreHandler(LoadMoreHandler loadMoreHandler) {
         mLoadMoreHandler = loadMoreHandler;
-        initLoadMoreView();
     }
 
     private void initLoadMoreView() {

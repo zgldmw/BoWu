@@ -40,7 +40,6 @@ public class AltaItemViewholder {
 
     public void setData(ImageData imageData) {
         FrescoUtils.displayImgAspectRatio(img, imageData.url);
-//        img.setImageURI(imageData.url);
         hover.setText(imageData.name);
         if (TextUtils.isEmpty(imageData.url)) {
             hover.setBackgroundResource(0);

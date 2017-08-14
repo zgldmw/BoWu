@@ -9,6 +9,8 @@ import com.dmw.zgl.bowu.R;
 import com.dmw.zgl.bowu.api.ApiService;
 import com.dmw.zgl.bowu.base.BaseFragment;
 import com.dmw.zgl.bowu.base.HttpService;
+import com.dmw.zgl.bowu.base.LoadMoreHandler;
+import com.dmw.zgl.bowu.base.LoadMoreItemView;
 import com.dmw.zgl.bowu.model.AltasYearData;
 import com.dmw.zgl.bowu.model.ImageData;
 import com.dmw.zgl.bowu.model.MagazineCoverData;
@@ -33,9 +35,10 @@ import io.reactivex.schedulers.Schedulers;
  * Description:     AltasFragment
  */
 
-public class AltasFragment extends BaseFragment {
+public class AltasFragment extends BaseFragment implements LoadMoreHandler {
     private int currentPage;
     private AltasAdapter altasAdapter;
+    private boolean isLoading;
 
     public static AltasFragment getInstance() {
         AltasFragment altasFragment = new AltasFragment();
@@ -54,11 +57,18 @@ public class AltasFragment extends BaseFragment {
         recyclerView.setLayoutManager(layoutManager);
         altasAdapter = new AltasAdapter();
         recyclerView.setAdapter(altasAdapter);
+        LoadMoreItemView loadMoreItemView = new LoadMoreItemView();
+        loadMoreItemView.setLoadMoreHandler(this);
+        loadMoreItemView.setupWithRecyclerView(recyclerView);
     }
 
     @Override
     protected void setData() {
         currentPage = Calendar.getInstance().get(Calendar.YEAR);
+        requestData();
+    }
+
+    private void requestData() {
         ApiService apiService = HttpService.getInstance().create(ApiService.class);
         apiService.getAltaList(currentPage).subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -68,12 +78,21 @@ public class AltasFragment extends BaseFragment {
                     @Override
                     protected void onStart() {
                         super.onStart();
+                        isLoading = true;
                         Log.d("AltasFragment", "开始请求");
                     }
 
                     @Override
                     public void onNext(@NonNull Document document) {
+                        isLoading = false;
+                        String activeYear = document.select("div.wpr").get(2).select("div.middle.jsShow").first().text();
+                        int activePage = Integer.parseInt(activeYear);
+                        if (activePage != currentPage) {
+                            return;
+                        }
+
                         Element content = document.select("div.wpr").get(3).select("div.content").first();
+
                         ArrayList<Object> objects = new ArrayList<>();
                         Elements photoList = content.select("ul.photo-list");
                         AltasYearData altasYearData = new AltasYearData();
@@ -114,19 +133,37 @@ public class AltasFragment extends BaseFragment {
                             objects.add(o);
                         }
 
-                        altasAdapter.addHomePage(objects);
+                        if (currentPage == Calendar.getInstance().get(Calendar.YEAR)) {
+                            altasAdapter.addHomePage(objects);
+                        } else {
+                            altasAdapter.addNextPage(objects);
+                        }
+
+                        currentPage--;
                         Log.d("AltasFragment", document.html());
                     }
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-
+                        isLoading = false;
                     }
 
                     @Override
                     public void onComplete() {
-
+                        isLoading = false;
                     }
                 });
+    }
+
+    @Override
+    public boolean isCanLoadMore() {
+        return currentPage >= 2014;
+    }
+
+    @Override
+    public void loadMore() {
+        if (!isLoading) {
+            requestData();
+        }
     }
 }
