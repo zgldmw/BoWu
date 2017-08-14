@@ -18,6 +18,7 @@
             android:id="@+id/cover"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            fresco:placeholderImage="@color/colore5"
             fresco:viewAspectRatio="1.78" />
 
         <LinearLayout

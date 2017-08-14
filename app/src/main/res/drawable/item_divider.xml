@@ -3,6 +3,6 @@
     android:shape="line">
 
     <solid android:color="@color/colore5"/>
-    <size android:height="@dimen/px1"/>
+    <size android:width="@dimen/px30" android:height="@dimen/px30"/>
 
 </shape>

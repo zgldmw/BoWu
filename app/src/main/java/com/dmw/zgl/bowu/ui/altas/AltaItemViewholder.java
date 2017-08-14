@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.dmw.zgl.bowu.R;
+import com.dmw.zgl.bowu.base.FrescoUtils;
 import com.dmw.zgl.bowu.model.ImageData;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -38,7 +39,8 @@ public class AltaItemViewholder {
     }
 
     public void setData(ImageData imageData) {
-        img.setImageURI(imageData.url);
+        FrescoUtils.displayImgAspectRatio(img, imageData.url);
+//        img.setImageURI(imageData.url);
         hover.setText(imageData.name);
         if (TextUtils.isEmpty(imageData.url)) {
             hover.setBackgroundResource(0);

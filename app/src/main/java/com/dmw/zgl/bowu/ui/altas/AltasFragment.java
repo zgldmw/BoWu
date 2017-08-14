@@ -1,7 +1,7 @@
 package com.dmw.zgl.bowu.ui.altas;
 
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.View;
 
@@ -50,7 +50,7 @@ public class AltasFragment extends BaseFragment {
     @Override
     protected void initView(View contentView) {
         RecyclerView recyclerView = contentView.findViewById(R.id.recyclerview);
-        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         altasAdapter = new AltasAdapter();
         recyclerView.setAdapter(altasAdapter);
@@ -66,6 +66,12 @@ public class AltasFragment extends BaseFragment {
                 .subscribeWith(new DisposableObserver<Document>() {
 
                     @Override
+                    protected void onStart() {
+                        super.onStart();
+                        Log.d("AltasFragment", "开始请求");
+                    }
+
+                    @Override
                     public void onNext(@NonNull Document document) {
                         Element content = document.select("div.wpr").get(3).select("div.content").first();
                         ArrayList<Object> objects = new ArrayList<>();
@@ -74,7 +80,7 @@ public class AltasFragment extends BaseFragment {
                         altasYearData.year = currentPage + "";
                         objects.add(altasYearData.year);
                         for (Element element : photoList) {
-                            ArrayList<ImageData> imageDatas= new ArrayList<>();
+                            ArrayList<ImageData> imageDatas = new ArrayList<>();
                             Elements imgs = element.select("li");
                             for (Element imgData : imgs) {
                                 if (imgData.hasClass("header")) {
