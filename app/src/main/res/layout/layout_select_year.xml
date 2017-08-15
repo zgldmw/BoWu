@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/gray_border"
+    android:layout_margin="@dimen/px20"
     android:padding="@dimen/px20">
 
     <TextView
@@ -21,7 +22,7 @@
         android:layout_marginTop="@dimen/px20"
         app:flexWrap="wrap"
         app:flexDirection="row"
-        app:justifyContent="space_between">
+        app:justifyContent="flex_start">
 
     </com.google.android.flexbox.FlexboxLayout>
 

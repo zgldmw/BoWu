@@ -23,6 +23,7 @@ public class MainActivity extends FragmentActivity {
 
     private void initView() {
         ViewPager viewPager = findViewById(R.id.viewpager);
+        viewPager.setPageTransformer(true, null);
         HomeActivityFragmentAdapter fragmentAdapter = new HomeActivityFragmentAdapter(getSupportFragmentManager());
         viewPager.setAdapter(fragmentAdapter);
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -22,7 +23,7 @@ import com.google.android.flexbox.FlexboxLayoutManager;
  * Description:     AltaItemViewholder
  */
 
-public class AltaItemViewholder {
+public class AltaItemViewholder implements View.OnTouchListener {
     private View mWholeView;
 
     private SimpleDraweeView img;
@@ -33,6 +34,8 @@ public class AltaItemViewholder {
         mWholeView = LayoutInflater.from(context).inflate(R.layout.item_alta, parent, false);
         img = mWholeView.findViewById(R.id.img);
         hover = mWholeView.findViewById(R.id.hover);
+
+        mWholeView.setOnTouchListener(this);
     }
 
     public View getWholeView() {
@@ -40,6 +43,7 @@ public class AltaItemViewholder {
     }
 
     public void setData(ImageData imageData) {
+        img.setAspectRatio(1.7f);
         FrescoUtils.displayImgAspectRatio(img, imageData.url);
         hover.setText(imageData.name);
         if (TextUtils.isEmpty(imageData.url)) {
@@ -49,9 +53,21 @@ public class AltaItemViewholder {
             hover.setBackgroundResource(R.color.black_alpha);
             hover.setVisibility(View.GONE);
         }
-        RecyclerView.LayoutParams lp = (RecyclerView.LayoutParams) mWholeView.getLayoutParams();
-        if (lp instanceof FlexboxLayoutManager.LayoutParams) {
-            ((FlexboxLayoutManager.LayoutParams) lp).setFlexGrow(1f);
+    }
+
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        switch (motionEvent.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                hover.setVisibility(View.VISIBLE);
+                break;
+            case MotionEvent.ACTION_UP:
+                hover.setVisibility(View.GONE);
+                break;
+            case MotionEvent.ACTION_CANCEL:
+                hover.setVisibility(View.GONE);
+                break;
         }
+        return true;
     }
 }

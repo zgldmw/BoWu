@@ -2,6 +2,7 @@ package com.dmw.zgl.bowu.ui.sort;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
 
@@ -31,6 +32,7 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 public class SortFragment extends BaseFragment {
+    private SwipeRefreshLayout swipeRefreshLayout;
     private SortFragmentAdapter sortFragmentAdapter;
 
     public static SortFragment getInstance() {
@@ -45,6 +47,8 @@ public class SortFragment extends BaseFragment {
 
     @Override
     protected void initView(View contentView) {
+        swipeRefreshLayout = contentView.findViewById(R.id.refreshlayout);
+        swipeRefreshLayout.setEnabled(false);
         ViewPager viewPager = contentView.findViewById(R.id.viewpager);
         sortFragmentAdapter = new SortFragmentAdapter(getChildFragmentManager());
         viewPager.setAdapter(sortFragmentAdapter);
@@ -64,6 +68,12 @@ public class SortFragment extends BaseFragment {
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<Document>() {
+
+                    @Override
+                    protected void onStart() {
+                        super.onStart();
+                        swipeRefreshLayout.setRefreshing(true);
+                    }
 
                     @Override
                     public void onNext(@NonNull Document document) {
@@ -87,7 +97,7 @@ public class SortFragment extends BaseFragment {
 
                     @Override
                     public void onComplete() {
-
+                        swipeRefreshLayout.setRefreshing(false);
                     }
                 });
     }

@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/px20"
+    android:layout_marginBottom="@dimen/px20"
     android:orientation="vertical">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/px40"
         android:orientation="horizontal">
 
         <View
@@ -37,7 +38,6 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/detial_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/color_36"
