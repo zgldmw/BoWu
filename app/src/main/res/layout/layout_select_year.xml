@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/gray_border"
+    android:padding="@dimen/px20">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/select_year"
+        android:textColor="@color/color6"
+        android:textSize="@dimen/sp16"/>
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/year_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/px20"
+        app:flexWrap="wrap"
+        app:flexDirection="row"
+        app:justifyContent="space_between">
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+</LinearLayout>

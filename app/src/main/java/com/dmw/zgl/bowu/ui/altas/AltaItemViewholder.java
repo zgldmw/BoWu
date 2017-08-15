@@ -12,6 +12,7 @@ import com.dmw.zgl.bowu.R;
 import com.dmw.zgl.bowu.base.FrescoUtils;
 import com.dmw.zgl.bowu.model.ImageData;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.android.flexbox.FlexboxLayoutManager;
 
 /**
  * Author:          zgl_dmw
@@ -47,6 +48,10 @@ public class AltaItemViewholder {
         } else {
             hover.setBackgroundResource(R.color.black_alpha);
             hover.setVisibility(View.GONE);
+        }
+        RecyclerView.LayoutParams lp = (RecyclerView.LayoutParams) mWholeView.getLayoutParams();
+        if (lp instanceof FlexboxLayoutManager.LayoutParams) {
+            ((FlexboxLayoutManager.LayoutParams) lp).setFlexGrow(1f);
         }
     }
 }

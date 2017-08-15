@@ -6,4 +6,5 @@
     <string name="load_more">正在加载更多......</string>
     <string name="no_more_data">已无更多数据</string>
     <string name="more">更多</string>
+    <string name="select_year">按出版年份查看:</string>
 </resources>

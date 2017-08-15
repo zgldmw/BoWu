@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/px40"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="@dimen/px40"
+            android:layout_height="@dimen/px40"
+            android:background="@color/color_36"
+            android:layout_gravity="bottom"/>
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/cover"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:placeholderImage="@color/colore5"
+            app:viewAspectRatio="0.72"
+            tools:layout_gravity="center_horizontal" />
+
+        <View
+            android:layout_width="@dimen/px40"
+            android:layout_height="@dimen/px40"
+            android:background="@color/color_36"
+            android:layout_gravity="bottom"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/detial_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_36"
+        android:orientation="vertical"
+        android:paddingBottom="20dp"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="要有光" />
+
+        <TextView
+            android:id="@+id/order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/px20"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            tools:text="第07期 总第163期" />
+
+    </LinearLayout>
+
+</LinearLayout>

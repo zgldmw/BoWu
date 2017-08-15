@@ -28,4 +28,7 @@ public interface ApiService {
 
     @GET("nh/pic/{year}.htm")
     Observable<Document> getAltaList(@Path("year") int year);
+
+    @GET("nh/mag/0/{year}.htm")
+    Observable<Document> getMagzines(@Path("year") int year);
 }

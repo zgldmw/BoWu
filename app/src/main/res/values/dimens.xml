@@ -9,4 +9,6 @@
     <dimen name="px4">2dp</dimen>
     <dimen name="px40">20dp</dimen>
     <dimen name="px80">40dp</dimen>
+    <dimen name="px2">1dp</dimen>
+    <dimen name="px100">50dp</dimen>
 </resources>

@@ -65,8 +65,8 @@ public class ArticleListFragment extends BaseFragment implements LoadMoreHandler
         recyclerView.setAdapter(articleListAdapter);
 
         LoadMoreItemView loadMoreItemView = new LoadMoreItemView();
-        loadMoreItemView.setupWithRecyclerView(recyclerView);
         loadMoreItemView.setLoadMoreHandler(this);
+        loadMoreItemView.setupWithRecyclerView(recyclerView);
     }
 
     @Override
