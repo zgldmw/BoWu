@@ -1,4 +1,4 @@
-package com.dmw.zgl.bowu
+package com.dmw.zgl.bowu.ui
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -14,10 +14,10 @@ import com.dmw.zgl.bowu.ui.sort.SortFragment
  * Email:           2559531803@qq.com
  * Create:          2017/8/10 11:17
  * Update:          2017/8/10 11:17
- * Description:     HomeActivityFragmentAdapter
+ * Description:     MagazinesHomeActivityFragmentAdapter
  */
 
-class HomeActivityFragmentAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+class MagazinesHomeActivityFragmentAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
     private val tabTitle = arrayOf("首页", "分类", "图集", "杂志")
 
     override fun getItem(position: Int): Fragment {

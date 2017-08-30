@@ -1,12 +1,11 @@
 package com.dmw.zgl.bowu.ui.home
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-
 import com.dmw.zgl.bowu.R
+import com.dmw.zgl.bowu.base.FrescoUtils
 import com.dmw.zgl.bowu.model.ImageData
 import com.facebook.drawee.view.SimpleDraweeView
 
@@ -34,7 +33,7 @@ class HomePageBannerViewHolder(parent: ViewGroup) {
     }
 
     fun setData(imageData: ImageData) {
-        img.setImageURI(imageData.url)
+        FrescoUtils.displayImgAspectRatio(img, imageData.url)
         name.text = imageData.name
         desc.text = imageData.desc
     }
